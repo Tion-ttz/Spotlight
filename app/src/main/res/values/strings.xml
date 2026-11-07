@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spotlight</string>
+    <string name="settings_title">Spotlight 设置</string>
+    <string name="search_hint">搜索应用、词典、翻译…</string>
+    <string name="cancel">取消</string>
+    <string name="search">搜索</string>
+    <string name="section_apps">应用</string>
+    <string name="section_dictionary">词典</string>
+    <string name="section_translation">翻译</string>
+    <string name="section_web">网页搜索</string>
+    <string name="no_results">没有找到结果</string>
+    <string name="no_results_hint">换个关键词，或直接在网页中搜索。</string>
+    <string name="web_search_for">在浏览器中搜索“%1$s”</string>
+    <string name="copy">复制</string>
+    <string name="copied">已复制</string>
+    <string name="dictionary_source_offline">离线词典</string>
+    <string name="dictionary_source_online">Dictionary API</string>
+    <string name="translation_source_online">MyMemory 翻译</string>
+    <string name="translation_source_offline">离线词典</string>
+    <string name="translation_loading">正在翻译…</string>
+    <string name="dictionary_loading">正在查询…</string>
+    <string name="offline_notice">网络不可用，已显示本地词典结果。</string>
+    <string name="empty_hint">输入应用名称、英文单词或要翻译的句子</string>
+    <string name="recent_apps">最近使用</string>
+    <string name="suggested_apps">建议</string>
+    <string name="try_dictionary">试试查词</string>
+    <string name="example_word_1">serendipity</string>
+    <string name="example_word_2">hello</string>
+    <string name="example_word_3">苹果</string>
+    <string name="calculator_result">计算结果</string>
+    <string name="open_settings">设置</string>
+    <string name="floating_handle">悬浮把手</string>
+    <string name="trigger_hint_title">如何呼出</string>
+    <string name="trigger_hint_lsposed">在 LSPosed 中启用本模块，作用域同时勾选「系统界面」和你的桌面，然后重启系统界面。之后在桌面或锁屏，除最顶部状态栏以外的任意位置向下滑即可呼出 Spotlight；从最顶部下滑仍然是打开通知栏。</string>
+    <string name="trigger_hint_fallback">没有 LSPosed 时，可打开悬浮把手或使用通知栏快捷开关。</string>
+</resources>

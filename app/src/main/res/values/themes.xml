@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Spotlight.Base" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:windowBackground">@color/settings_background</item>
+        <item name="android:colorAccent">@color/accent</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Spotlight" parent="@style/Theme.Spotlight.Base" />
+
+    <style name="Theme.Spotlight.Settings" parent="@style/Theme.Spotlight.Base">
+        <item name="android:windowBackground">@color/settings_background</item>
+    </style>
+
+    <style name="Theme.Spotlight.Transparent" parent="@style/Theme.Spotlight.Base">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowAnimationStyle">@style/Animation.Spotlight</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+
+    <style name="Animation.Spotlight" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/spotlight_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/spotlight_hold</item>
+        <item name="android:activityCloseEnterAnimation">@anim/spotlight_hold</item>
+        <item name="android:activityCloseExitAnimation">@anim/spotlight_out</item>
+    </style>
+
+    <style name="Theme.Spotlight.Dialog" parent="@android:style/Theme.Material.Dialog.NoActionBar">
+        <item name="android:colorAccent">@color/accent</item>
+    </style>
+</resources>
