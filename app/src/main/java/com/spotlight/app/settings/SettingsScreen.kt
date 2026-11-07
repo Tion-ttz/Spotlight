@@ -252,7 +252,7 @@ fun SettingsScreen(onBack: () -> Unit, onThemeChange: (ThemeMode) -> Unit = {}) 
                 )
             }
 
-            SectionTitle("桌面下拉 / 全局搜索")
+            SectionTitle("桌面下拉（实验性）")
             Group {
                 Column(modifier = Modifier.padding(horizontal = 14.dp, vertical = 12.dp)) {
                     Text(
@@ -263,8 +263,9 @@ fun SettingsScreen(onBack: () -> Unit, onThemeChange: (ThemeMode) -> Unit = {}) 
                     )
                     Spacer(Modifier.height(6.dp))
                     Text(
-                        text = "系统设置 → 桌面 → 桌面下拉 → 选「搜索」。本应用已注册为系统搜索入口，" +
-                            "选「搜索」后从桌面下滑就会直接打开 Spotlight，不需要 LSPosed。",
+                        text = "仅供尝试：系统设置 → 桌面 → 桌面下拉 → 选「搜索」，并确认下面的开关是开着的。" +
+                            "实测小米澎湃 OS / MIUI 并不会把这个下拉转给 Spotlight（仍提示“没有原版搜索”），" +
+                            "所以这条路径不可靠，请以 LSPosed 手势为主。",
                         color = palette.textSecondary,
                         fontSize = 13.sp,
                     )
@@ -280,7 +281,7 @@ fun SettingsScreen(onBack: () -> Unit, onThemeChange: (ThemeMode) -> Unit = {}) 
                 SwitchRow(
                     title = "接管桌面下拉搜索",
                     subtitle = if (prefs.searchAliasEnabled) {
-                        "已注册为系统搜索入口（SEARCH / WEB_SEARCH / GLOBAL_SEARCH）"
+                        "已注册为系统搜索入口（部分 ROM 实测无效，请以 LSPosed 为主）"
                     } else {
                         "已关闭：搜索动作不会再打开 Spotlight"
                     },
