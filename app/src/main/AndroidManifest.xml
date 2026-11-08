@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <application
+        android:name=".SpotlightApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Spotlight">
+
+        <activity
+            android:name=".ui.SpotlightActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"
+            android:noHistory="false"
+            android:showWhenLocked="true"
+            android:turnScreenOn="false"
+            android:theme="@style/Theme.Spotlight.Transparent"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".settings.SettingsActivity"
+            android:exported="false"
+            android:label="@string/settings_title"
+            android:theme="@style/Theme.Spotlight.Settings" />
+
+        <!-- 全局搜索入口：被系统/桌面的「搜索」动作拉起时，直接打开 Spotlight。
+             小米桌面「桌面下拉 → 搜索」、其它 ROM 的搜索键都会走这里。
+             设置页可以随时通过组件开关启用/停用。 -->
+        <activity-alias
+            android:name=".ui.GlobalSearchAlias"
+            android:targetActivity=".ui.SpotlightActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Spotlight.Transparent">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.WEB_SEARCH" />
+                <action android:name="android.search.action.GLOBAL_SEARCH" />
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity-alias>
+
+        <meta-data
+            android:name="android.app.default_searchable"
+            android:value=".ui.SpotlightActivity" />
+
+        <service
+            android:name=".trigger.FloatingButtonService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Keeps the optional Spotlight floating handle visible." />
+        </service>
+
+        <!-- 接收 LSPosed 模块（系统界面/桌面进程）发来的手势诊断事件，仅用于设置页自检 -->
+        <receiver
+            android:name=".trigger.HookDiagnosticsReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.spotlight.app.HOOK_DIAG" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".trigger.SpotlightTileService"
+            android:exported="true"
+            android:icon="@drawable/ic_tile"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+
+        <meta-data android:name="xposedmodule" android:value="true" />
+        <meta-data
+            android:name="xposeddescription"
+            android:value="在桌面和锁屏（除最顶部状态栏外）向下滑，呼出半透明的 Spotlight 搜索。" />
+        <meta-data android:name="xposedminversion" android:value="82" />
+        <meta-data android:name="xposedscope" android:resource="@array/xposed_scope" />
+    </application>
+
+</manifest>
